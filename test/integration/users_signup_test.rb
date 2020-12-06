@@ -15,7 +15,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'users/new'
   end
 
-  # 無効なユーザーに対する登録のテスト
+  # 有効なユーザーに対する登録のテスト
     test "valid signup information" do
       get signup_path
       assert_difference 'User.count', 1 do
@@ -26,6 +26,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       end
       follow_redirect!
       assert_template 'users/show'
+      is_logged_in?
     end
 
 end
