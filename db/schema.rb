@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_28_011709) do
+ActiveRecord::Schema.define(version: 2020_12_11_033306) do
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_reviews_on_store_id"
+    t.index ["user_id", "store_id"], name: "index_reviews_on_user_id_and_store_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
 
   create_table "stores", force: :cascade do |t|
     t.string "name"

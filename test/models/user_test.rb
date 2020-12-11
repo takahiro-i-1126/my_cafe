@@ -48,4 +48,13 @@ test "name should not be too long" do
     assert_not @user.valid?
   end
 
+  test "associated reviews should be destroyed" do
+    @user.save
+    @store = stores(:sutaba)
+    @user.reviews.create!(content: "Lorem ipsum",store_id: @store.id)
+    assert_difference 'Review.count', -1 do
+      @user.destroy
+    end
+  end
+
 end

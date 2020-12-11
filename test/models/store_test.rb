@@ -29,4 +29,6 @@ class StoreTest < ActiveSupport::TestCase
        @store.introduction = "a" * 1001
        assert_not @store.valid?
      end
+
+     #ストアの削除による、レビューの削除のテスト
 end
