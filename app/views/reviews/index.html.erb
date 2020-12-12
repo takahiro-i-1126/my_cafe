@@ -1,0 +1,14 @@
+<% provide(:title, 'All reviews') %>
+<h1>All reviews</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <% @reviews.each do |review| %>
+    <li>
+      <%= review.content %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
