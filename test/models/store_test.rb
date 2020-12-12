@@ -30,5 +30,12 @@ class StoreTest < ActiveSupport::TestCase
        assert_not @store.valid?
      end
 
-     #ストアの削除による、レビューの削除のテスト
+     test "associated reviews should be destroyed" do
+       @store.save
+       @user = users(:michael)
+       @store.reviews.create!(content: "Lorem ipsum",user_id: @user.id)
+       assert_difference 'Review.count', -1 do
+         @store.destroy
+       end
+     end
 end

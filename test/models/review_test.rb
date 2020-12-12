@@ -4,7 +4,7 @@ class ReviewTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
     @store = stores(:sutaba)
-    @review = @user.reviews.build(content: "いいね",store_id: @store.id)
+    @review = Review.new(content: "いいね",user_id: @user.id,store_id: @store.id)
   end
 
   test "should review valid" do
