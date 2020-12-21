@@ -1,7 +1,11 @@
 class ReviewsController < ApplicationController
 
-  def index
-    @reviews = Review.paginate(page: params[:page])
+  before_action :logged_in_user, only: [:create, :destroy]
+
+  def create
+  end
+
+  def destroy
   end
 
 end
