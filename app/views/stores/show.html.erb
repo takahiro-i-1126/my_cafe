@@ -1,9 +1,29 @@
-<h3 class="storename">
-  <%= @store.name %>
-</h3>
-<h4>
-  <%= @store.title %>
-</h4>
-<h5>
-<%= @store.introduction %>
-</h5>
+<div class="row">
+  <h3 class="storename">
+    <%= @store.name %>
+  </h3>
+  <h4>
+    <%= @store.title %>
+  </h4>
+  <h5>
+    <%= @store.introduction %>
+  </h5>
+  <% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="review_form">
+        <%= render 'shared/review_form' %>
+      </section>
+    </aside>
+  </div>
+  <% else %>
+    <h4><%= link_to 'ユーザ登録', signup_path %>して、レビューを書こう！</h4>
+  <% end %>
+  <div class="col-md-8">
+      <h3>reviews (<%= @store.reviews.count %>)</h3>
+      <ol class="reviews">
+        <%= render @reviews %>
+      </ol>
+      <%= will_paginate @reviews %>
+  </div>
+</div>

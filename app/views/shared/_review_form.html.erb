@@ -1,0 +1,7 @@
+<%= form_for(@review) do |f| %>
+    <%= f.hidden_field :store_id, value: @store.id %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "レビューを投稿してみよう..." %>
+  </div>
+  <%= f.submit '投稿', class: "btn btn-primary" %>
+<% end %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   get 'sessions/new'
   get 'stores/new'
   root 'static_pages#home'
@@ -12,4 +13,5 @@ Rails.application.routes.draw do
   resources :users
   resources :stores
   resources :reviews,          only: [:create, :destroy]
+  
 end
