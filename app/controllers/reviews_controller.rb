@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = current_user.reviews.build(review_params)
+    @review.image.attach(params[:review][:image])
     if @review.save
       flash[:success] = "review created!"
       redirect_to current_user
@@ -17,6 +18,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-      params.require(:review).permit(:store_id, :content)
+      params.require(:review).permit(:store_id, :content, :image)
   end
 end
