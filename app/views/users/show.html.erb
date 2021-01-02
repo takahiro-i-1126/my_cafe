@@ -12,9 +12,11 @@
     <% if @user.reviews.any? %>
       <h3>reviews (<%= @user.reviews.count %>)</h3>
       <ol class="reviews">
-        <%= render @reviews %>
+        <% @user_reviews.each do |user_review| %>
+          <%= render 'users/user_review', review: user_review %>
+        <% end %>
       </ol>
-      <%= will_paginate @reviews %>
+      <%= will_paginate @user_reviews %>
     <% end %>
   </div>
 </div>
