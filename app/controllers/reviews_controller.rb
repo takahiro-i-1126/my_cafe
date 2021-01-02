@@ -7,11 +7,13 @@ class ReviewsController < ApplicationController
     @review.image.attach(params[:review][:image])
     if @review.save
       flash[:success] = "review created!"
-      #店のページに飛ぶよう改良必要
-      redirect_to current_user
+      #下記リファクタリング必要
+      @store = @review.store
+      redirect_to @store
     else
-      @feed_items = []
-      render 'static_pages/home'
+      @store = @review.store
+      @reviews = @store.reviews.paginate(page: params[:page])
+      render 'stores/show'
     end
   end
 
