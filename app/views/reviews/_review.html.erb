@@ -1,10 +1,21 @@
 <li id="review-<%= review.id %>">
-  <span class="user"><%= link_to review.store.name, review.store %></span>
   <span class="content">
+    <% if controller.controller_name == 'users' && controller.action_name == 'show'%>
+      <span class="store"><%= link_to review.store.name, review.store %></span>
+    <% elsif controller.controller_name == 'stores' && controller.action_name == 'show' %>
+      <h4><%= link_to review.user.name, review.user %></h4>
+    <% else %>
+      <h4><%= link_to review.user.name, review.user %></h4>
+      <span class="store"><%= link_to review.store.name, review.store %></span>
+    <% end %>
     <%= review.content %>
     <%= image_tag review.display_image if review.image.attached? %>
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(review.created_at) %> ago.
+    <% if controller.controller_name == 'users' && controller.action_name == 'show' &&current_user?(review.user) %>
+      <%= link_to "delete", review, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
   </span>
 </li>

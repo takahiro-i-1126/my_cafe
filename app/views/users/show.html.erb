@@ -9,14 +9,10 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <% if @user.reviews.any? %>
       <h3>reviews (<%= @user.reviews.count %>)</h3>
       <ol class="reviews">
-        <% @user_reviews.each do |user_review| %>
-          <%= render 'users/user_review', review: user_review %>
-        <% end %>
+        <%= render @reviews %>
       </ol>
-      <%= will_paginate @user_reviews %>
-    <% end %>
+      <%= will_paginate @reviews %>
   </div>
 </div>
