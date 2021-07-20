@@ -13,7 +13,9 @@
 
       <%= f.submit "Log in", class: "btn btn-primary" %>
     <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    <div class="center">
+      <h4>まだ会員でない方は、以下より会員登録をお願いいたします</h4>
+      <%= link_to "無料会員登録", signup_path, class: "btn btn-lg btn-primary" %>
+    </div>
   </div>
 </div>
